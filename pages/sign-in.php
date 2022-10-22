@@ -1,10 +1,49 @@
 <?php
 
     session_start();
-    error_reporting(0);
+    require "conexion.php";
+	  error_reporting(0);
     $nombre = $_SESSION['id_admin'];
     
-?>
+    if ($_POST) {
+
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+  
+      $sql = "SELECT id_admin, correo_admin, user_admin, pass_admin FROM admin WHERE correo_admin='$email'";
+      $resultado = $mysqli->query($sql);
+      $num = $resultado->num_rows;
+  
+      if ($num>0) {
+  
+        $row = $resultado->fetch_assoc();
+        $password_bd = $row['pass_admin'];
+        $pass_c = ($password);
+  
+        if ($password_bd == $pass_c) {
+  
+          $_SESSION['id'] = $row['id_admin'];
+          $_SESSION['nombre'] = $row['user_admin'];
+  
+                  echo "<script>location.href='dashboard.php';</script>";
+                  die();
+                  
+        } else {
+  
+          $pass_err = "La Contraseña no coincide";
+  
+        }
+  
+      } else {
+  
+        $user_err = "El usuario o contraseña es Incorrecto";
+  
+      }
+  
+    }
+  
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,20 +80,21 @@
                   <p class="mb-0">Ingrese su Usuario y Contraseña para continuar</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
+                      <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
                     </div>
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                      <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe">
                       <label class="form-check-label" for="rememberMe">Recordarme</label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" href="dashboard.php" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                     </div>
+                    <p class="warnings" id="warnings"> <?php echo $pass_err, $user_err?></p>
                   </form>
                 </div>
               </div>
