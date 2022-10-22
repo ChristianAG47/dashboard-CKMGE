@@ -231,7 +231,7 @@
               <h6 class="mb-0">Registro de clientes</h6>
             </div>
             <div class="card-body pt-4 p-3">
-              <form>
+            <form name="form" method="POST" id="form">
 
               <div class="form-group"> <!-- Full Name -->
                     <label for="" class="control-label">Nombre</label>
@@ -250,19 +250,20 @@
             
                 <div class="form-group"> <!-- City-->
                     <label for="" class="control-label">Telefono</label>
-                    <input type="tel" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
+                    <input type="number" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
                 </div>                                    
                 <div class="form-group"> <!-- City-->
                   <label for="" class="control-label">Ciudad</label>
                   <input type="text" class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
-              </div>                                                     
-
-
+                </div>                                                     
                 <div class="form-group"> <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="submit" name="regventas" class="btn btn-primary">Registrar</button>
                 </div>     
                 
             </form>
+            <?php
+              include ("regventas.php");
+            ?>
             </div>
           </div>
         </div>
@@ -339,11 +340,7 @@
       </div>
     </div>
   </div>
-  <?php
-
-    include ("../regclintes.php");
-    
-  ?>
+  
 
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
