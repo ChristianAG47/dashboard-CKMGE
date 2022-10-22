@@ -1,24 +1,24 @@
 <?php
 
-    include ("conexion.php");
+include ("conexion.php");
 
-    if (isset($_POST['regist'])) {
+if (isset($_POST['regist'])) {
 
-        if (strlen($_POST['nombre']) >= 1 &&
-        strlen($_POST['apellidos']) >= 1 &&
-        strlen($_POST['email']) >= 1 &&
-        strlen($_POST['telefono']) >= 1 &&
-        strlen($_POST['ciudad']) >= 1) {
+    if (strlen($_POST['nom_clientes']) >= 1 &&
+    strlen($_POST['ap_clientes']) >= 1 &&
+    strlen($_POST['correo_clientes']) >= 1 &&
+    strlen($_POST['num_clientes']) >= 1 &&
+    strlen($_POST['ubi_clientes']) >= 1) {
 
-            $nombre = trim($_POST['nombre']);
-            $apellidos = trim($_POST['apellidos']);
-            $email = trim($_POST['email']);
-            $telefono = trim($_POST['telefono']);
-            $ciudad = trim($_POST['ciudad']);
-            $consulta = "INSERT INTO usuarios(nombre, apellidos, email, telefono, ciudad)
-            VALUES ('$nombre','$apellidos','$email','$telefono','$ciudad')";
-            $resultado = mysqli_query($mysqli, $consulta);
-        }
+        $nombre = trim($_POST['nom_clientes']);
+        $apellidos = trim($_POST['ap_clientes']);
+        $email = trim($_POST['correo_clientes']);
+        $telefono = trim($_POST['num_clientes']);
+        $ciudad = trim($_POST['ubi_clientes']);
+        $consulta = "INSERT INTO `usuarios`(`nom_clientes`, `ap_clientes`, `correo_clientes`, `num_clientes`, `ubi_clientes`)
+        VALUES ('$nombre','$apellidos','$email','$telefono','$ciudad')";
+        $resultado = mysqli_query($mysqli, $consulta);
     }
+}
 
 ?>

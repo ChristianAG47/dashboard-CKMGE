@@ -1,10 +1,9 @@
 <?php
-
-    session_start();
-    error_reporting(0);
-    $nombre = $_SESSION['id_admin'];
-    
+  session_start();
+	require "conexion.php";
+	error_reporting(0);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -234,29 +233,29 @@
             <div class="card-body pt-4 p-3">
               <form>
 
-                <div class="form-group"> <!-- Full Name -->
-                    <label for="full_name_id" class="control-label">Nombre</label>
-                    <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder="Nombres">
+              <div class="form-group"> <!-- Full Name -->
+                    <label for="" class="control-label">Nombre</label>
+                    <input type="text" class="form-control" id="nom_clientes" name="nom_clientes" placeholder="Nombres">
                 </div>    
             
                 <div class="form-group"> <!-- Street 1 -->
-                    <label for="street1_id" class="control-label">Apellidos</label>
-                    <input type="text" class="form-control" id="street1_id" name="street1" placeholder="Apellidos">
+                    <label for="" class="control-label">Apellidos</label>
+                    <input type="text" class="form-control" id="ap_clientes" name="ap_clientes" placeholder="Apellidos">
                 </div>                    
                                         
                 <div class="form-group"> <!-- Street 2 -->
-                    <label for="street2_id" class="control-label">Email</label>
-                    <input type="email" class="form-control" id="street2_id" name="street2" placeholder="Email">
+                    <label for="" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="correo_clientes" name="correo_clientes" placeholder="Email">
                 </div>    
             
                 <div class="form-group"> <!-- City-->
-                    <label for="city_id" class="control-label">Telefono</label>
-                    <input type="tel" class="form-control" id="city_id" name="city" placeholder="Telefono">
+                    <label for="" class="control-label">Telefono</label>
+                    <input type="tel" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
                 </div>                                    
                 <div class="form-group"> <!-- City-->
-                  <label for="city_id" class="control-label">Ciudad</label>
-                  <input type="text" class="form-control" id="city_id" name="city" placeholder="Ciudad">
-              </div>                                    
+                  <label for="" class="control-label">Ciudad</label>
+                  <input type="text" class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
+              </div>                                                     
 
 
                 <div class="form-group"> <!-- Submit Button -->
