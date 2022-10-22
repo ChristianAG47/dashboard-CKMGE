@@ -1,3 +1,10 @@
+<?php
+
+    session_start();
+    error_reporting(0);
+    $nombre = $_SESSION['id_admin'];
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -246,6 +253,11 @@
                     <label for="city_id" class="control-label">Telefono</label>
                     <input type="tel" class="form-control" id="city_id" name="city" placeholder="Telefono">
                 </div>                                    
+                <div class="form-group"> <!-- City-->
+                  <label for="city_id" class="control-label">Ciudad</label>
+                  <input type="text" class="form-control" id="city_id" name="city" placeholder="Ciudad">
+              </div>                                    
+
 
                 <div class="form-group"> <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -328,7 +340,11 @@
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
+  <?php
+
+    include ("../regclintes.php");
+  ?php>
+
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
