@@ -6,42 +6,28 @@
     $nombre = $_SESSION['id_admin'];
     
     if ($_POST) {
-
       $email = $_POST['email'];
       $password = $_POST['password'];
-  
       $sql = "SELECT id_admin, correo_admin, user_admin, pass_admin FROM admin WHERE correo_admin='$email'";
       $resultado = $mysqli->query($sql);
       $num = $resultado->num_rows;
   
       if ($num>0) {
-  
         $row = $resultado->fetch_assoc();
         $password_bd = $row['pass_admin'];
         $pass_c = ($password);
-  
         if ($password_bd == $pass_c) {
-  
           $_SESSION['id'] = $row['id_admin'];
           $_SESSION['nombre'] = $row['user_admin'];
-  
                   echo "<script>location.href='dashboard.php';</script>";
                   die();
-                  
         } else {
-  
           $pass_err = "La Contraseña no coincide";
-  
         }
-  
       } else {
-  
         $user_err = "El usuario o contraseña es Incorrecto";
-  
       }
-  
     }
-  
   ?>
 
 <!DOCTYPE html>

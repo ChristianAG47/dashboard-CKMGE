@@ -1,24 +1,18 @@
 <?php
 
-include ("conexion.php");
+    include ("conexion.php");
 
-if (isset($_POST['regclientes'])) {
+    if (isset($_POST['regclientes'])) {
 
-    if (strlen($_POST['nom_clientes']) >= 1 &&
-    strlen($_POST['ap_clientes']) >= 1 &&
-    strlen($_POST['correo_clientes']) >= 1 &&
-    strlen($_POST['num_clientes']) >= 1 &&
-    strlen($_POST['ubi_clientes']) >= 1) {
+        if (strlen($_POST['marca_producto']) >= 1 &&
+        strlen($_POST['precio_producto']) >= 1) {
 
-        $nombre = trim($_POST['nom_clientes']);
-        $apellidos = trim($_POST['ap_clientes']);
-        $email = trim($_POST['correo_clientes']);
-        $telefono = trim($_POST['num_clientes']);
-        $ciudad = trim($_POST['ubi_clientes']);
-        $consulta = "INSERT INTO `usuarios`(`nom_clientes`, `ap_clientes`, `correo_clientes`, `num_clientes`, `ubi_clientes`)
-        VALUES ('$nombre','$apellidos','$email','$telefono','$ciudad')";
-        $resultado = mysqli_query($mysqli, $consulta);
+            $producto = trim($_POST['marca_producto']);
+            $precio = trim($_POST['precio_producto']);
+            $consulta = "INSERT INTO `productos`(`precio_producto`, `marca_producto`)
+            VALUES ('$precio','$producto')";
+            $resultado = mysqli_query($mysqli, $consulta);
+        }
     }
-}
 
 ?>
