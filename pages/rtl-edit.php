@@ -1,10 +1,7 @@
 <?php
-  session_start();
-	require "conexion.php";
-	error_reporting(0);
+  include ("conexion.php");
+  $consulta = "SELECT * FROM clientes";
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Registro Ventas
+    Calendario
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -55,7 +52,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/tables.php">
+          <a class="nav-link active" href="../pages/tables.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
@@ -64,12 +61,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/billing.php">
+          <a class="nav-link " href="../pages/billing.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro de Productos</span>
+            <span class="nav-link-text ms-1">Registro de Ventas</span>
           </a>
         </li>
         <li class="nav-item">
@@ -78,7 +75,7 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-info text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro Clientes</span>
+            <span class="nav-link-text ms-1">Registro de Servicios</span>
           </a>
         </li>
         <li class="nav-item">
@@ -115,9 +112,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Página</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Registro Productos</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Calendario</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Registro Productos</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Mantenimientos</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -128,7 +125,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="sign-in.php" class="nav-link text-white font-weight-bold px-0">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
@@ -232,38 +229,107 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-2">
+    <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-14 mt-4">
-          <div class="card">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Registro de Productos</h6>
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Tabla de Direcciones</h6>
             </div>
-            <div class="card-body pt-4 p-3">
-            <form name="form" method="POST" id="form">
-                <div class="form-group">
-                  <!-- Street 1 -->
-                  <label for="" class="control-label">Producto</label>
-                  <input type="text" class="form-control" id="marca_producto" name="marca_producto" placeholder="Producto">
-                </div>
-
-                <div class="form-group">
-                  <!-- Street 2 -->
-                  <label for="" class="control-label">Precio</label>
-                  <input type="number" class="form-control" id="precio_producto" name="precio_producto" placeholder="Precio">
-                </div>
-
-                <div class="form-group">
-                  <!-- Submit Button -->
-                  <button type="submit" name="regclientes" class="btn btn-primary">Registrar</button>
-                </div>
-              </form>
-              <?php
-      	        include ("regclientes.php");
-              ?>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direccion
+                      </th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <?php
+                    $resultado = mysqli_query($mysqli, $consulta);
+                    while ($row=mysqli_fetch_assoc($resultado)) {
+                  ?>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm"><?php echo $row["nom_clientes"]," ",$row["ap_clientes"];?></h6>
+                            <p class="text-xs text-secondary mb-0"><?php echo $row["correo_clientes"];?></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row["ubi_clientes"];?></p>
+                        <p class="text-xs text-secondary mb-0">PAIS</p>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm"><?php echo $row["num_clientes"];?></h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"></span>
+                      </td>
+                      <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <?php } ?>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="card-body pt-4 p-3">
+              <form name="form" method="POST" id="form">
+
+              <div class="form-group"> <!-- Full Name -->
+                    <label for="" class="control-label">Nombre</label>
+                    <input type="text" required class="form-control" id="nom_clientes" name="nom_clientes" placeholder="Nombres">
+                </div>    
+            
+                <div class="form-group"> <!-- Street 1 -->
+                    <label for="" class="control-label">Apellidos</label>
+                    <input type="text" required class="form-control" id="ap_clientes" name="ap_clientes" placeholder="Apellidos">
+                </div>                    
+                                        
+                <div class="form-group"> <!-- Street 2 -->
+                    <label for="" class="control-label">Email</label>
+                    <input type="email" required class="form-control" id="correo_clientes" name="correo_clientes" placeholder="Email">
+                </div>    
+            
+                <div class="form-group"> <!-- City-->
+                    <label for="" class="control-label">Telefono</label>
+                    <input type="tel" required min="10" max="10" size="10" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
+                </div>                                    
+                <div class="form-group"> <!-- City-->
+                  <label for="" class="control-label">Ciudad</label>
+                  <input type="text" required class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
+                </div>                                                     
+                <div class="form-group"> <!-- Submit Button -->
+                    <button type="submit" name="regventas" class="btn btn-primary">Registrar</button>
+                </div>     
+                
+              </form>
+              <?php
+              include ("regventas.php");
+              ?>
+            </div>
+      </div>
+    </div>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -346,9 +412,7 @@
       </div>
     </div>
   </div>
-
-
-
+  <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>

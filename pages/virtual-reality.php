@@ -68,7 +68,7 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro de Ventas</span>
+            <span class="nav-link-text ms-1">Registro de Productos</span>
           </a>
         </li>
         <li class="nav-item">
@@ -77,7 +77,7 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-info text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro de Servicios</span>
+            <span class="nav-link-text ms-1">Registro Clientes</span>
           </a>
         </li>
         <li class="nav-item">
@@ -231,34 +231,39 @@
               <h6 class="mb-0">Registro de clientes</h6>
             </div>
             <div class="card-body pt-4 p-3">
-            <form name="form" method="POST" id="form">
+              <form name="form" method="POST" id="form">
+
               <div class="form-group"> <!-- Full Name -->
                     <label for="" class="control-label">Nombre</label>
-                    <input type="text" class="form-control" id="nom_clientes" name="nom_clientes" placeholder="Nombres">
+                    <input type="text" required class="form-control" id="nom_clientes" name="nom_clientes" placeholder="Nombres">
                 </div>    
+            
                 <div class="form-group"> <!-- Street 1 -->
                     <label for="" class="control-label">Apellidos</label>
-                    <input type="text" class="form-control" id="ap_clientes" name="ap_clientes" placeholder="Apellidos">
-                </div>
+                    <input type="text" required class="form-control" id="ap_clientes" name="ap_clientes" placeholder="Apellidos">
+                </div>                    
+                                        
                 <div class="form-group"> <!-- Street 2 -->
                     <label for="" class="control-label">Email</label>
-                    <input type="email" class="form-control" id="correo_clientes" name="correo_clientes" placeholder="Email">
-                </div>
+                    <input type="email" required class="form-control" id="correo_clientes" name="correo_clientes" placeholder="Email">
+                </div>    
+            
                 <div class="form-group"> <!-- City-->
                     <label for="" class="control-label">Telefono</label>
-                    <input type="number" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
-                </div>
+                    <input type="tel" required min="10" max="10" size="10" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
+                </div>                                    
                 <div class="form-group"> <!-- City-->
                   <label for="" class="control-label">Ciudad</label>
-                  <input type="text" class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
-                </div>
+                  <input type="text" required class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
+                </div>                                                     
                 <div class="form-group"> <!-- Submit Button -->
                     <button type="submit" name="regventas" class="btn btn-primary">Registrar</button>
-                </div>
-            </form>
-            <?php
+                </div>     
+                
+              </form>
+              <?php
               include ("regventas.php");
-            ?>
+              ?>
             </div>
           </div>
         </div>

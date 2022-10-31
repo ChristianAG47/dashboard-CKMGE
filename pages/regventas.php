@@ -10,7 +10,6 @@ if (isset($_POST['regventas'])) {
     strlen($_POST['num_clientes']) >= 1 &&
     strlen($_POST['ubi_clientes']) >= 1) {
 
-        
         $nombre = trim($_POST['nom_clientes']);
         $apellidos = trim($_POST['ap_clientes']);
         $email = trim($_POST['correo_clientes']);
