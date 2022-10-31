@@ -1,6 +1,10 @@
 <?php
   include ("conexion.php");
-  $consulta = "SELECT * FROM clientes";
+  $id_actualizar = $_GET["id_actualizar"];
+  $consulta = "SELECT * FROM clientes WHERE id_Clientes ='$id_actualizar'
+  /*inner join mantenimientos ON clientes.id_Clientes=mantenimientos.id_Clientes
+  inner join detallemant ON mantenimientos.id_mant=detallemant.id_mant
+  inner join productos ON detallemant.id_producto=productos.id_producto*/";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +70,7 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro de Ventas</span>
+            <span class="nav-link-text ms-1">Registro Productos</span>
           </a>
         </li>
         <li class="nav-item">
@@ -75,7 +79,16 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-info text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registro de Servicios</span>
+            <span class="nav-link-text ms-1">Registro Clientes</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="../pages/rtl-edit2.php">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Registro Mantenimientos</span>
           </a>
         </li>
         <li class="nav-item">
@@ -243,7 +256,9 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direccion
-                      </th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telefono</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fecha</th>
+                    </th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -276,13 +291,7 @@
                         </div>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"></span>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                          data-original-title="Edit user">
-                          Edit
-                        </a>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row["fecha_mant"];?></span>
                       </td>
                     </tr>
                   </tbody>
@@ -292,42 +301,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="card-body pt-4 p-3">
-              <form name="form" method="POST" id="form">
-
-              <div class="form-group"> <!-- Full Name -->
-                    <label for="" class="control-label">Nombre</label>
-                    <input type="text" required class="form-control" id="nom_clientes" name="nom_clientes" placeholder="Nombres">
-                </div>    
-            
-                <div class="form-group"> <!-- Street 1 -->
-                    <label for="" class="control-label">Apellidos</label>
-                    <input type="text" required class="form-control" id="ap_clientes" name="ap_clientes" placeholder="Apellidos">
-                </div>                    
-                                        
-                <div class="form-group"> <!-- Street 2 -->
-                    <label for="" class="control-label">Email</label>
-                    <input type="email" required class="form-control" id="correo_clientes" name="correo_clientes" placeholder="Email">
-                </div>    
-            
-                <div class="form-group"> <!-- City-->
-                    <label for="" class="control-label">Telefono</label>
-                    <input type="tel" required min="10" max="10" size="10" class="form-control" id="num_clientes" name="num_clientes" placeholder="Telefono">
-                </div>                                    
-                <div class="form-group"> <!-- City-->
-                  <label for="" class="control-label">Ciudad</label>
-                  <input type="text" required class="form-control" id="ubi_clientes" name="ubi_clientes" placeholder="Ciudad">
-                </div>                                                     
-                <div class="form-group"> <!-- Submit Button -->
-                    <button type="submit" name="regventas" class="btn btn-primary">Registrar</button>
-                </div>     
-                
-              </form>
-              <?php
-              include ("regventas.php");
-              ?>
-            </div>
       </div>
     </div>
   </main>
