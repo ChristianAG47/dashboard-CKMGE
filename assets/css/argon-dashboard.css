@@ -10081,8 +10081,8 @@ fieldset:disabled .btn {
 }
 
 .py-4 {
-  padding-top: 4.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 2.5rem !important;
 }
 
 .py-5 {
@@ -20846,7 +20846,7 @@ fieldset:disabled .btn {
 }
 
 .card {
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  box-shadow: 0 0 2rem 0 rgb(0 0 0);
 }
 
 .card .card-header {
@@ -21404,7 +21404,7 @@ fieldset:disabled .btn {
   right: 30px;
   font-size: 1.25rem;
   z-index: 990;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 83%);
   cursor: pointer;
 }
 
@@ -23336,8 +23336,9 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active {
-  background-color: #f6f9fc;
+  background-image: linear-gradient(310deg, #000 0%, #adadad 100%);
   box-shadow: none;
+  color: #fff;
 }
 
 .navbar-vertical .navbar-nav .nav-link.active {
