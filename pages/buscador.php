@@ -1,7 +1,5 @@
 <?php
-  session_start();
-	require "conexion.php";
-	error_reporting(0);
+	include ("conexion.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +22,11 @@
  if(isset($_GET['enviar']))  {
   $busqueda = $_GET['busqueda'];
 
- $consulta = $mysqli->query("SELECT * FROM bdayes WHERE nom_clientes LIKE '%busqueda%'");
+ $consulta = $mysqli->query("SELECT * FROM clientes WHERE nom_clientes LIKE '%$busqueda%'");
 
  while ($row = $consulta->fetch_array())  { 
   echo $row['nom_clientes'].'<br>';
  
-
 
  }
 
