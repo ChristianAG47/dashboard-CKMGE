@@ -3293,10 +3293,10 @@ textarea.form-control-lg {
 }
 
 .input-group-text {
-  display: flex;
   align-items: center;
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
+  width: 110vh;
   font-weight: 400;
   line-height: 1.4rem;
   color: #344767;
@@ -22529,8 +22529,7 @@ hr.horizontal.gray-light {
 .navbar-vertical.navbar-expand-xs {
   display: block;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: 10%;
   width: 100%;
   max-width: 15.625rem !important;
   overflow-y: auto;
@@ -23332,7 +23331,7 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical.bg-white {
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  box-shadow: 0rem 0.2rem 2rem 0.2rem rgb(1 5 24);
 }
 
 .navbar-vertical.bg-white .navbar-nav>.nav-item .nav-link.active {

@@ -1,39 +1,15 @@
 <?php
-	include ("conexion.php");
-?>
+  include ("conexion.php");
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<title></title>
-</head>
-
-<body>
-<form action="" method="get">
-<input type="text" name="busqueda">  <br>
-<input type="submit" name="enviar" value="Buscar">
-</form>
-
-<br><br><br>
-
-
-<?php
- if(isset($_GET['enviar']))  {
-  $busqueda = $_GET['busqueda'];
-
- $consulta = $mysqli->query("SELECT * FROM clientes WHERE nom_clientes LIKE '%$busqueda%'");
-
- while ($row = $consulta->fetch_array())  { 
-  echo $row['nom_clientes'].'<br>';
- 
-
- }
-
-
+  if(!isset($_POST['busqueda']))  {
+    $_POST['busqueda'] = "";
+    $busqueda = $_POST['busqueda'];
   }
 
-?>
-</body>
+  $busqueda = $_POST['busqueda'];
+  $resultado = "SELECT * FROM clientes WHERE nom_clientes LIKE '%$busqueda%' OR
+    ap_clientes LIKE '%$busqueda%' OR num_clientes LIKE '%$busqueda%' OR
+    correo_clientes LIKE '%$busqueda%' OR ubi_clientes LIKE '%$busqueda%'";
+  $resultado = mysqli_query($mysqli, $resultado);
 
-</html>
+?>

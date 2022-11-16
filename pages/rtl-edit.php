@@ -1,10 +1,7 @@
 <?php
   include ("conexion.php");
   $id_actualizar = $_GET["id_actualizar"];
-  $consulta = "SELECT * FROM clientes WHERE id_Clientes ='$id_actualizar'
-  /*inner join mantenimientos ON clientes.id_Clientes=mantenimientos.id_Clientes
-  inner join detallemant ON mantenimientos.id_mant=detallemant.id_mant
-  inner join productos ON detallemant.id_producto=productos.id_producto*/";
+  $consulta = "SELECT * FROM clientes WHERE id_Clientes ='$id_actualizar'";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -184,47 +181,62 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direccion
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Correo</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direccion </th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telefono</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fecha</th>
-                    </th>
                       <th class="text-secondary opacity-7"></th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Acción</th>
                     </tr>
                   </thead>
                   <?php
                     $resultado = mysqli_query($mysqli, $consulta);
                     while ($row=mysqli_fetch_assoc($resultado)) {
                   ?>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                  <form name="form" method="POST" id="form">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <br>
+                              <img src="../assets/img/team-2.svg" class="avatar avatar-sm me-3" alt="user1">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <input type="hidden" class="form-control" id="id_Clientes" name="id_Clientes" value="<?php echo $row["id_Clientes"];?>">
+                              <input type="text" class="form-control" id="nom_clientes" name="nom_clientes" value="<?php echo $row["nom_clientes"];?>">
+                              <input class="form-control" id="ap_clientes" name="ap_clientes" value="<?php echo $row["ap_clientes"];?>">
+                            </div>
                           </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row["nom_clientes"]," ",$row["ap_clientes"];?></h6>
-                            <p class="text-xs text-secondary mb-0"><?php echo $row["correo_clientes"];?></p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="correo_clientes" name="correo_clientes" value="<?php echo $row["correo_clientes"];?>">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="ubi_clientes" name="ubi_clientes" value="<?php echo $row["ubi_clientes"];?>">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="num_clientes" id="num_clientes" value="<?php echo $row["num_clientes"];?>">
+                        </td>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row["ubi_clientes"];?></p>
-                        <p class="text-xs text-secondary mb-0">PAIS</p>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $row["num_clientes"];?></h6>
+                        </td>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <input type="submit" name="actclientes" class="text-secondary font-weight-bold text-xs" value="Actualizar">
+                            </div>
                           </div>
-                        </div>
                       </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row["fecha_mant"];?></span>
-                      </td>
-                    </tr>
-                  </tbody>
+                      </tr>
+                    </tbody>
+                  </form>
                   <?php } ?>
+                  <?php
+                    include ("procesar-actualizar.php");
+                  ?>
                 </table>
               </div>
             </div>

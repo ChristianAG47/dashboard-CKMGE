@@ -181,7 +181,8 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direccion</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telefono</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Telefono</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Acción</th>
                     </tr>
                   </thead>
                   <?php
@@ -205,21 +206,20 @@
                         <p class="text-xs font-weight-bold mb-0"><?php echo $row["ubi_clientes"];?></p>
                         <p class="text-xs text-secondary mb-0">Calle y No.casa</p>
                       </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
+                      <td class="">
+                        <div class=" px-2 py-1">
+                          <div class="flex-column justify-content-center text-center">
                             <h6 class="mb-0 text-sm"><?php echo $row["num_clientes"];?></h6>
                           </div>
                         </div>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"></span>
-                      </td>
-                      <td class="align-middle">
-                        <a href="rtl-edit.php?id_actualizar=<?php echo $row["id_Clientes"]; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                        <a href="rtl-edit.php?id_actualizar=<?php echo $row["id_Clientes"]; ?>" class="text-secondary font-weight-bold text-xs eliminar_regist" data-toggle="tooltip"
                           data-original-title="Edit user">
                           Edit
-                        </a>
+                        </a> | 
+                        <a href="eliminar.php?id_actualizar=<?php echo $row["id_Clientes"]; ?>"
+                        class="text-secondary font-weight-bold text-xs eliminar_regist">Eliminar</a>
                       </td>
                     </tr>
                   </tbody>
@@ -313,6 +313,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script src="../assets/js/confirmacion.js"></script>
 </body>
 
 </html>

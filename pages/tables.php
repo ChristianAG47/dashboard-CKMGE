@@ -184,9 +184,8 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Equipo Instalado</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Mantenimiento</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acción</th>
                     </tr>
                   </thead>
                   <?php
@@ -210,15 +209,18 @@
                         <p class="text-xs font-weight-bold mb-0"><?php echo $row["marca_producto"];?></p>
                         <p class="text-xs text-secondary mb-0">MODELO</p>
                       </td>
+                      <!--
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">STATUS</span>
                       </td>
+                      -->
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $row["fecha_mant"];?></span>
                       </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <td class="align-middle text-center">
+                        <a href="eliminar-mant.php?det_mant=<?php echo $row["det_mant"]; ?>" 
+                        class="text-secondary font-weight-bold text-xs eliminar_regist" data-toggle="tooltip" data-original-title="Edit user">
+                          Eliminar
                         </a>
                       </td>
                     </tr>
@@ -226,7 +228,7 @@
                   <?php 
                     }
                   ?>
-                  <tr>
+                  <!--<tr>
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
@@ -254,7 +256,7 @@
                           Send
                         </a>
                       </td>
-                    </tr>
+                  </tr> -->
                 </table>
               </div>
             </div>
@@ -344,6 +346,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script src="../assets/js/confirmacion.js"></script>
 </body>
 
 </html>
