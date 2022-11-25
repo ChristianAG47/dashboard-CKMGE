@@ -1,5 +1,9 @@
 <?php
-  include ("conexion.php");
+  include "conexion.php";
+  session_start();
+  if (!isset($_SESSION['id'])) {
+    header("Location: sign-in.php");
+  }
   $consulta = "SELECT * FROM clientes 
   inner join detallemant ON clientes.id_Clientes=detallemant.id_Clientes
   inner join productos ON detallemant.id_producto=productos.id_producto";
@@ -127,6 +131,7 @@
           </div>
           <!-- Fin Buscador -->
           <ul class="navbar-nav  justify-content-end">
+            <?php if (!isset($_SESSION['id'])) { ?>
             <!-- Inicio LogIn -->
             <li class="nav-item d-flex align-items-center">
               <a href="sign-in.php" class="nav-link text-white font-weight-bold px-0">
@@ -135,6 +140,7 @@
               </a>
             </li>
             <!-- Fin LogIn -->
+            <?php } ?>
             <!-- Inicio Config -->
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0">
@@ -142,29 +148,13 @@
               </a>
             </li>
             <!-- Fin Config -->
-            <!-- Inicio Alertas -->
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
+            <!-- Inicio Cerrar Sesion -->
+            <li class="nav-item dropdown d-flex align-items-center">
+              <a class="nav-link text-white p-0" id="dropdownMenuButton" aria-expanded="false" href="logout.php">
+                <img src="../assets/img/logout.svg" alt="logout" class="icon-xxs logsession">
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <!-- Fin Alertas -->
+            <!-- Fin Cerrar Sesion -->
           </ul>
         </div>
       </div>
@@ -185,6 +175,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Equipo Instalado</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Mantenimiento</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hora Mantenimiento</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acción</th>
                     </tr>
                   </thead>
@@ -216,6 +207,9 @@
                       -->
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $row["fecha_mant"];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row["hora_mant"];?></span>
                       </td>
                       <td class="align-middle text-center">
                         <a href="eliminar-mant.php?det_mant=<?php echo $row["det_mant"]; ?>" 

@@ -1,7 +1,9 @@
 <?php
-  session_start();
-	require "conexion.php";
-	error_reporting(0);
+    include "conexion.php";
+    session_start();
+    if (!isset($_SESSION['id'])) {
+      header("Location: sign-in.php");
+    }
 ?>
 
 
@@ -36,8 +38,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
         aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-        target="_blank">
+      <a class="navbar-brand m-0" target="_blank">
         <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Dashboard</span>
       </a>
@@ -127,6 +128,7 @@
           </div>
           <!-- Fin Buscador -->
           <ul class="navbar-nav  justify-content-end">
+            <?php if (!isset($_SESSION['id'])) { ?>
             <!-- Inicio LogIn -->
             <li class="nav-item d-flex align-items-center">
               <a href="sign-in.php" class="nav-link text-white font-weight-bold px-0">
@@ -135,6 +137,7 @@
               </a>
             </li>
             <!-- Fin LogIn -->
+            <?php } ?>
             <!-- Inicio Config -->
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0">
@@ -142,35 +145,19 @@
               </a>
             </li>
             <!-- Fin Config -->
-            <!-- Inicio Alertas -->
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
+            <!-- Inicio Cerrar Sesion -->
+            <li class="nav-item dropdown d-flex align-items-center">
+              <a class="nav-link text-white p-0" id="dropdownMenuButton" aria-expanded="false" href="logout.php">
+                <img src="../assets/img/logout.svg" alt="logout" class="icon-xxs logsession">
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <!-- Fin Alertas -->
+            <!-- Fin Cerrar Sesion -->
           </ul>
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-2">
+    <div class="container-fluid py-1">
       <div class="row">
         <div class="col-md-14 mt-4">
           <div class="card">
@@ -178,17 +165,17 @@
               <h6 class="mb-0">Registro de Productos</h6>
             </div>
             <div class="card-body pt-4 p-3">
-            <form name="form" method="POST" id="form">
+              <form name="form" method="POST" id="form">
                 <div class="form-group">
                   <!-- Street 1 -->
                   <label for="" class="control-label">Producto</label>
-                  <input type="text" class="form-control" id="marca_producto" name="marca_producto" placeholder="Producto">
+                  <input type="text" required class="form-control" id="marca_producto" name="marca_producto" placeholder="Producto">
                 </div>
 
                 <div class="form-group">
                   <!-- Street 2 -->
                   <label for="" class="control-label">Precio</label>
-                  <input type="number" class="form-control" id="precio_producto" name="precio_producto" placeholder="Precio">
+                  <input type="number" required class="form-control" id="precio_producto" name="precio_producto" placeholder="Precio">
                 </div>
 
                 <div class="form-group">
@@ -202,6 +189,8 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

@@ -3,8 +3,8 @@
 include ("conexion.php");
 
 
-    $cadenaSQL = "insert into detallemant (id_producto, fecha_mant, id_clientes)
-    values(".$_POST['idProductos'].",'".$_POST['fechamant']."', ".$_POST['idClientes']." )";
+    $cadenaSQL = "insert into detallemant (id_producto, fecha_mant, hora_mant, id_clientes)
+    values(".$_POST['idProductos'].",'".$_POST['fechamant']."','".$_POST['horamant']."', ".$_POST['idClientes']." )";
 
     $sql=$mysqli->query($cadenaSQL);
 

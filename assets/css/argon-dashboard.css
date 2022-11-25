@@ -21397,6 +21397,14 @@ fieldset:disabled .btn {
   transform: skewX(10deg);
 }
 
+.logsession {
+  color: white;
+  background: white;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2px;
+}
+
 .fixed-plugin .fixed-plugin-button {
   background: #fff;
   border-radius: 50%;

@@ -20,8 +20,9 @@
             correo_clientes='$email', num_clientes='$telefono', ubi_clientes='$ciudad' WHERE id_Clientes='$id'";
             $resultado = mysqli_query($mysqli, $actualizar);
         }
+        
         if ($resultado) {
-            header("Location: rtl.php");
+            echo "<script> window.location='rtl.php' </script>";
         } else {
             echo "<script>alert('No se han podido actualizar los cambios'); window.history.go(-1);</script>";
         }

@@ -1,10 +1,9 @@
 <?php
-  include ("conexion.php");
-  /*$id_actualizar = $_GET["id_actualizar"];
-  $consulta = "SELECT * FROM clientes
-  inner join mantenimientos ON clientes.id_Clientes=mantenimientos.id_Clientes
-  inner join detallemant ON mantenimientos.id_mant=detallemant.id_mant
-  inner join productos ON detallemant.id_producto=productos.id_producto*/
+  include "conexion.php";
+  session_start();
+  if (!isset($_SESSION['id'])) {
+    header("Location: sign-in.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -128,6 +127,7 @@
           </div>
           <!-- Fin Buscador -->
           <ul class="navbar-nav  justify-content-end">
+            <?php if (!isset($_SESSION['id'])) { ?>
             <!-- Inicio LogIn -->
             <li class="nav-item d-flex align-items-center">
               <a href="sign-in.php" class="nav-link text-white font-weight-bold px-0">
@@ -136,6 +136,7 @@
               </a>
             </li>
             <!-- Fin LogIn -->
+            <?php } ?>
             <!-- Inicio Config -->
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0">
@@ -143,37 +144,20 @@
               </a>
             </li>
             <!-- Fin Config -->
-            <!-- Inicio Alertas -->
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
+            <!-- Inicio Cerrar Sesion -->
+            <li class="nav-item dropdown d-flex align-items-center">
+              <a class="nav-link text-white p-0" id="dropdownMenuButton" aria-expanded="false" href="logout.php">
+                <img src="../assets/img/logout.svg" alt="logout" class="icon-xxs logsession">
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <!-- Fin Alertas -->
+            <!-- Fin Cerrar Sesion -->
           </ul>
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
 
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-1">
       <div class="row">
         <div class="col-12">
           <div class="col-md-14 mt-4">
@@ -205,6 +189,12 @@
                       name="fechamant" value="" min="2022-01-11" max="2024-01-31" onfocus="this.min=new Date().toISOString().split('T')[0]">
                   </div>
 
+                  <div class="form-group">
+                    <!-- Hora mantenimientos -->
+                    <label for="" class="control-label">Hora Mantenimiento</label>
+                    <input class="form-control text-secondary text-xs font-weight-bold" type="time" id="horamant" name="horamant">
+                  </div>
+                  
                   <div class="form-group">
                     <!-- Conexion con tabla Clientes -->
                     <label for="" class="control-label">Cliente</label>
